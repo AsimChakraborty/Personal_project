@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="container mt-5">
+            <h2 class="text-center">Add New Employee</h2>
+            <form action="{{ url_for('add_employee') }}" method="POST" enctype="multipart/form-data">
+                <!-- Name field -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <!-- Email field -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <!-- Date of Birth (DOB) field -->
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob" required>
+                </div>
+                <!-- Phone field -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <!-- Photo field -->
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+                </div>
+                <div class="action text-center">
+                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-success">Cancel</a>
+                </div>
+              
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

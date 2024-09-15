@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="employee-edit mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Edit Employee</h1>
+            <form action="{{ url_for('edit_employee', employee_id=employee[0]) }}" method="POST"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ employee[1] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{ employee[2] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="number">Mobile</label>
+                    <input type="text" class="form-control" name="number" value="{{ employee[3] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" name="dob" value="{{ employee[4] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" class="form-control-file" name="photo">
+                    {% if employee[5] %}
+                    <img src="{{ url_for('static', filename='uploads/' + employee[5]) }}" alt="Current Photo"
+                        style="width: 100px; height: auto; margin-top: 10px;">
+                    {% endif %}
+                </div>
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-primary">Update Employee</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-success">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.close-flash').on('click', function (event) {
+                $(this).closest('.alert').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            });
+
+            // Add event listeners to delete buttons
+            $('.deleteBtn').on('click', function (event) {
+                event.preventDefault(); // Prevent the default link behavior
+
+                // Get employee ID from data attribute
+                var employeeId = $(this).data('id');
+                // alert(employeeId)
+
+                // Show SweetAlert confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // If confirmed, redirect to delete URL
+                        window.location.href = '/delete_employee/' + employeeId;
+                    }
+                });
+            });
+        });
+    </script>
+    {% endblock %}

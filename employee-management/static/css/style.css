@@ -1,0 +1,28 @@
+/* Custom styles for the sidebar */
+#sidebar {
+    min-height: 100vh; /* Make sidebar full height */
+    padding-top: 20px;
+}
+
+.nav-link {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    background-color: #444;
+    text-decoration: none;
+}
+
+/* Home page design */
+.home-page {
+    margin-top: 41px;
+}
+
+.action-btn {
+    text-align: center;
+    font-size: 23px;
+}
+.action-btn a{
+    padding: 5px;
+}
